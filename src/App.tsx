@@ -1,39 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 import { Grid } from '@mui/material';
-
+import HeaderUI from './components/HeaderUI';
+import AlertUI from './components/AlertUI';
+import SelectorUI from './components/SelectorUI';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <Grid container spacing={5} justifyContent="center" alignItems="center">
+    <Grid container direction="column" spacing={4}>
+      {/* Grid superior: Encabezado, Alertas y Selector */}
+      <Grid item>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} md={4}>
+            <HeaderUI />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <AlertUI description="No se preveen lluvias" />
+          </Grid>
+            <Grid item xs={12} md={4}>
+            <SelectorUI />
+            </Grid>
+        </Grid>
+      </Grid>
 
-      {/* Encabezado */}
-      <Grid size={{ xs: 12, md: 12 }} >Elemento: Encabezado</Grid>
+      {/* Grid inferior: Resto de los elementos */}
+      <Grid item>
+        <Grid container spacing={5} justifyContent="flex-end" alignItems="center">
+          {/* Indicadores */}
+          <Grid item xs={12} md={9}>
+            Elemento: Indicadores
+          </Grid>
 
-      {/* Alertas */}
-      <Grid size={{ xs: 12, md: 12 }}>Elemento: Alertas</Grid>
+          {/* Gráfico */}
+          <Grid item xs={12} md={6}>
+            Elemento: Gráfico
+          </Grid>
 
-      {/* Selector */}
-      <Grid size={{ xs: 12, md: 3 }}>Elemento: Selector</Grid>
+          {/* Tabla */}
+          <Grid item sx={{ display: { xs: "none", md: "block" } }}>
+            Elemento: Tabla
+          </Grid>
 
-      {/* Indicadores */}
-      <Grid size={{ xs: 12, md: 9 }}>Elemento: Indicadores</Grid>
-
-      {/* Gráfico */}
-      <Grid size={{ xs: 12, md: 6 }}>Elemento: Gráfico</Grid>
-
-      {/* Tabla */}
-      <Grid sx={{ display: { xs: "none", md: "block"} }} >Elemento: Tabla</Grid>
-
-      {/* Información adicional */}
-      <Grid sx={{ display: { xs: "none", md: "block"} }}>Elemento: Información adicional</Grid>
-
+          {/* Información adicional */}
+          <Grid item sx={{ display: { xs: "none", md: "block" } }}>
+            Elemento: Información adicional
+          </Grid>
+        </Grid>
+      </Grid>
     </Grid>
-  )
-} 
+  );
+}
 
-export default App
+export default App;
