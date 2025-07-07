@@ -4,6 +4,7 @@ import { Grid } from '@mui/material';
 import HeaderUI from './components/HeaderUI';
 import AlertUI from './components/AlertUI';
 import SelectorUI from './components/SelectorUI';
+import IndicatorUI from './components/IndicatorUI';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -19,18 +20,36 @@ function App() {
           <Grid item xs={12} md={4}>
             <AlertUI description="No se preveen lluvias" />
           </Grid>
-            <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4}>
             <SelectorUI />
-            </Grid>
+          </Grid>
         </Grid>
       </Grid>
+
 
       {/* Grid inferior: Resto de los elementos */}
       <Grid item>
         <Grid container spacing={5} justifyContent="flex-end" alignItems="center">
           {/* Indicadores */}
-          <Grid item xs={12} md={9}>
-            Elemento: Indicadores
+          
+          <Grid container size={{ xs: 12, md: 9 }} >
+
+            <Grid size={{ xs: 12, md: 3 }}>
+              <IndicatorUI title='Temperatura (2m)' description='XX°C' />
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 3 }}>
+              <IndicatorUI title='Temperatura aparente' description='YY°C' />
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 3 }}>
+              <IndicatorUI title='Velocidad del viento' description='ZZkm/h' />
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 3 }}>
+              <IndicatorUI title='Humedad relativa' description='NN%' />
+            </Grid>
+
           </Grid>
 
           {/* Gráfico */}
@@ -49,7 +68,9 @@ function App() {
           </Grid>
         </Grid>
       </Grid>
+
     </Grid>
+
   );
 }
 
