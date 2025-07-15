@@ -6,6 +6,8 @@ import AlertUI from './components/AlertUI';
 import SelectorUI from './components/SelectorUI';
 import IndicatorUI from './components/IndicatorUI';
 import DataFetcher from './functions/DataFetcher';
+import TableUI from './components/TableUI';
+import ChartUI from './components/ChartUI';
 
 function App() {
   //const [count, setCount] = useState(0);
@@ -64,13 +66,12 @@ function App() {
           </Grid>
 
           {/* Gráfico */}
-          <Grid size={{ xs: 12, md: 6 }}>
-            Elemento: Gráfico
-          </Grid>
-
+          <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
+            <ChartUI />
+          </Grid
           {/* Tabla */}
           <Grid sx={{ display: { xs: "none", md: "block" } }}>
-            Elemento: Tabla
+            <TableUI />
           </Grid>
 
           {/* Información adicional */}
