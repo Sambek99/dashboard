@@ -10,7 +10,7 @@ import TableUI from './components/TableUI';
 import ChartUI from './components/ChartUI';
 
 function App() {
-  //const [count, setCount] = useState(0);
+
   const dataFetcherOutput = DataFetcher();
 
   return (
@@ -67,15 +67,25 @@ function App() {
 
           {/* Gráfico */}
           <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
-            <ChartUI />
-          </Grid
+            <ChartUI
+              data={dataFetcherOutput.data}
+              loading={dataFetcherOutput.loading}
+              error={dataFetcherOutput.error}
+            />
+          </Grid>
+
           {/* Tabla */}
-          <Grid sx={{ display: { xs: "none", md: "block" } }}>
-            <TableUI />
+          <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
+            <TableUI
+              data={dataFetcherOutput.data}
+              loading={dataFetcherOutput.loading}
+              error={dataFetcherOutput.error}
+            />
+
           </Grid>
 
           {/* Información adicional */}
-          <Grid sx={{ display: { xs: "none", md: "block" } }}>
+          <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
             Elemento: Información adicional
           </Grid>
         </Grid>
