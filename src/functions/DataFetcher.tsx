@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { OpenMeteoResponse } from '../types/DashboardTypes';
+import { getWithExpiry, setWithExpiry } from './storageWithExpiry';
 
 interface DataFetcherOutput {
     data: OpenMeteoResponse | null;
@@ -15,46 +16,53 @@ const cityCoordinates: Record<string, { latitude: number; longitude: number }> =
 };
 
 export default function DataFetcher(city: string): DataFetcherOutput {
-
     const [data, setData] = useState<OpenMeteoResponse | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        const cacheKey = `weather-${city}`;
+        const cached = getWithExpiry(cacheKey);
 
-        const coords = cityCoordinates[city] || cityCoordinates.guayaquil;
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&hourly=temperature_2m,wind_speed_10m&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=America%2FChicago`
+        const coords = cityCoordinates[city.toLowerCase()];
+        if (!coords) {
+            setError('Ciudad no encontrada');
+            setLoading(false);
+            return;
+        }
 
         const fetchData = async () => {
-
             try {
+                const response = await fetch(
+                    `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&hourly=temperature_2m`
+                );
 
-                const response = await fetch(url);
+                if (!response.ok) throw new Error('Error de red');
 
-                if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
-                }
-
-                const result: OpenMeteoResponse = await response.json();
-                setData(result);
-
-            } catch (err: any) {
-
-                if (err instanceof Error) {
-                    setError(err.message);
+                const json = await response.json();
+                setData(json);
+                setWithExpiry(cacheKey, json, 10); // guarda por 10 minutos
+            } catch (err) {
+                console.warn('Fallo al obtener datos, intentando usar caché sin vigencia...');
+                const fallback = localStorage.getItem(cacheKey);
+                if (fallback) {
+                    const parsed = JSON.parse(fallback);
+                    setData(parsed.value); // usa valor incluso si expiró
                 } else {
-                    setError("Ocurrió un error desconocido al obtener los datos.");
+                    setError('Error al obtener los datos');
                 }
-
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchData();
-
-    }, [city]); // El array vacío asegura que el efecto se ejecute solo una vez después del primer renderizado
+        if (cached) {
+            setData(cached);
+            setLoading(false);
+        } else {
+            fetchData();
+        }
+    }, [city]);
 
     return { data, loading, error };
-
 }

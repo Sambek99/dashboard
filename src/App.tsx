@@ -68,7 +68,7 @@ function App() {
           {/* Gráfico */}
           <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
             <ChartUI
-              selectedCity={selectedCity}
+              //selectedCity={selectedCity}
               data={dataFetcherOutput.data}
               loading={dataFetcherOutput.loading}
               error={dataFetcherOutput.error}
@@ -78,7 +78,7 @@ function App() {
           {/* Tabla */}
           <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
             <TableUI
-              selectedCity={selectedCity}
+              //selectedCity={selectedCity}
               data={dataFetcherOutput.data}
               loading={dataFetcherOutput.loading}
               error={dataFetcherOutput.error}

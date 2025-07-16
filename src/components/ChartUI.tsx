@@ -4,13 +4,13 @@ import type { OpenMeteoResponse } from '../types/DashboardTypes';
 //import DataFetcher from '../functions/DataFetcher';
 
 interface ChartUIProps {
-  selectedCity: string; 
+  //selectedCity: string; 
   data: OpenMeteoResponse | null;
   loading: boolean;
   error: string | null;
 }
 
-export default function ChartUI({ selectedCity, data, loading, error }: ChartUIProps) {
+export default function ChartUI({data, loading, error }: ChartUIProps) {
   //if (!selectedCity) return null;   //Si se lo activa no aparecerá la tabla ya que no hay una ciudad seleccionada
   if (loading) return <p>Cargando gráfico...</p>;
   if (error) return <p>Error: {error}</p>;
