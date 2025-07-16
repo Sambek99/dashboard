@@ -1,4 +1,4 @@
-//import { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Grid from '@mui/material/Grid';
 import HeaderUI from './components/HeaderUI';
@@ -10,8 +10,8 @@ import TableUI from './components/TableUI';
 import ChartUI from './components/ChartUI';
 
 function App() {
-
-  const dataFetcherOutput = DataFetcher();
+  const [selectedCity, setSelectedCity] = useState('');
+  const dataFetcherOutput = DataFetcher(selectedCity);
 
   return (
     <Grid container direction="column" spacing={4}>
@@ -25,7 +25,7 @@ function App() {
             <AlertUI description="No se preveen lluvias" />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
-            <SelectorUI />
+            <SelectorUI selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
           </Grid>
         </Grid>
       </Grid>
@@ -36,9 +36,9 @@ function App() {
           {/* Indicadores */}
           <Grid container size={{ xs: 12, md: 9 }}>
             {/* Renderizado condicional de los datos obtenidos */}
-            {dataFetcherOutput.loading && <p>Cargando datos...</p>}
-            {dataFetcherOutput.error && <p>Error: {dataFetcherOutput.error}</p>}
-            {dataFetcherOutput.data && (
+            {selectedCity && dataFetcherOutput.loading && <p>Cargando datos...</p>}
+            {selectedCity && dataFetcherOutput.error && <p>Error: {dataFetcherOutput.error}</p>}
+            {selectedCity && dataFetcherOutput.data && (
               <>
                 {/* Indicadores con datos obtenidos */}
                 <Grid size={{ xs: 12, md: 3 }}>
@@ -68,6 +68,7 @@ function App() {
           {/* Gráfico */}
           <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
             <ChartUI
+              selectedCity={selectedCity}
               data={dataFetcherOutput.data}
               loading={dataFetcherOutput.loading}
               error={dataFetcherOutput.error}
@@ -77,6 +78,7 @@ function App() {
           {/* Tabla */}
           <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
             <TableUI
+              selectedCity={selectedCity}
               data={dataFetcherOutput.data}
               loading={dataFetcherOutput.loading}
               error={dataFetcherOutput.error}

@@ -1,8 +1,10 @@
 import Box from '@mui/material/Box';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import type { OpenMeteoResponse } from '../types/DashboardTypes';
+//import DataFetcher from '../functions/DataFetcher';
 
 interface TableUIProps {
+  selectedCity: string;
   data: OpenMeteoResponse | null;
   loading: boolean;
   error: string | null;
@@ -24,7 +26,8 @@ const columns: GridColDef[] = [
   },
 ];
 
-export default function TableUI({ data, loading, error }: TableUIProps) {
+export default function TableUI({selectedCity, data, loading, error}: TableUIProps) {
+  //if (!selectedCity) return null;   //Si se lo activa no aparecerá la tabla ya que no hay una ciudad seleccionada
   if (loading) return <p>Cargando datos...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!data?.hourly?.time) return <p>No hay datos</p>;
@@ -40,8 +43,9 @@ export default function TableUI({ data, loading, error }: TableUIProps) {
     viento: viento[index],
   }));
 
+  
   return (
-    <Box sx={{ height: 350, width: '100%' }}>
+    <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
