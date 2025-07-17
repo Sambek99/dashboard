@@ -8,6 +8,8 @@ import IndicatorUI from './components/IndicatorUI';
 import DataFetcher from './functions/DataFetcher';
 import TableUI from './components/TableUI';
 import ChartUI from './components/ChartUI';
+import AssistantUI from './components/AssistantUI';
+
 
 function App() {
   const [selectedCity, setSelectedCity] = useState('guayaquil');
@@ -88,7 +90,7 @@ function App() {
 
           {/* Información adicional */}
           <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
-            Elemento: Información adicional
+            <AssistantUI />
           </Grid>
         </Grid>
       </Grid>
