@@ -23,7 +23,6 @@ export default function DataFetcher(city: string): DataFetcherOutput {
     useEffect(() => {
         const cacheKey = `weather-${city}`;
         const cached = getWithExpiry(cacheKey);
-
         const coords = cityCoordinates[city.toLowerCase()];
         if (!coords) {
             setError('Ciudad no encontrada');
