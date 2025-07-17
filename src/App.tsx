@@ -10,7 +10,7 @@ import TableUI from './components/TableUI';
 import ChartUI from './components/ChartUI';
 
 function App() {
-  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCity, setSelectedCity] = useState('guayaquil');
   const dataFetcherOutput = DataFetcher(selectedCity);
 
   return (

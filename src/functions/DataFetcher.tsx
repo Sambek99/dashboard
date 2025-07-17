@@ -34,7 +34,7 @@ export default function DataFetcher(city: string): DataFetcherOutput {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&hourly=temperature_2m`
+                    `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&hourly=temperature_2m,wind_speed_10m&current=temperature_2m,apparent_temperature,wind_speed_10m,relative_humidity_2m`
                 );
 
                 if (!response.ok) throw new Error('Error de red');
