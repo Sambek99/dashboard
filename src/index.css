@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #f5f7fb;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,6 +35,35 @@ h1 {
   line-height: 1.1;
 }
 
+#assistant-ui {
+  max-width: 600px;
+  margin: 0 auto;
+  flex: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  gap: 1.5em;
+  padding: 2em;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: rgba(231, 227, 227, 0.1) 0px 4px 12px;
+}
+
+#assistant-ui input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  background-color: #f9f9f9;
+  color: #000;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -42,7 +71,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #8696df;
   cursor: pointer;
   transition: border-color 0.25s;
 }
