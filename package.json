@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@mui/material": "^7.1.2",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.2.0",
     "@mui/x-charts": "^8.8.0",
     "@mui/x-data-grid": "^8.8.0",
     "cohere-ai": "^7.17.1",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@mui/types": "^7.4.4",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",

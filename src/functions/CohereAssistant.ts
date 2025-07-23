@@ -5,8 +5,7 @@ const cohere = new CohereClient({
 });
 
 let lastCall = 0;
-const cooldown = 5000; // 5 segundos entre llamadas
-
+const cooldown = 5000; // 5 segundos ent
 export async function askCohere(prompt: string): Promise<string> {
   const now = Date.now();
   if (now - lastCall < cooldown) {

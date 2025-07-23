@@ -25,11 +25,11 @@ export default function SelectorUI({ selectedCity, setSelectedCity }: SelectorUI
             onChange={handleChange}
             
         >
-            <MenuItem disabled value=""><em>Seleccione una ciudad</em></MenuItem>
-            <MenuItem value={"guayaquil"}>Guayaquil</MenuItem>
-            <MenuItem value={"quito"}>Quito</MenuItem>
-            <MenuItem value={"manta"}>Manta</MenuItem>
-            <MenuItem value={"cuenca"}>Cuenca</MenuItem>
+            <MenuItem disabled value=""><em>Seleccionar Ubicación</em></MenuItem>
+            <MenuItem value={"guayaquil"}>Guayaquil, Ecuador</MenuItem>
+            <MenuItem value={"quito"}>Quito, Ecuador</MenuItem>
+            <MenuItem value={"manta"}>Manta, Ecuador</MenuItem>
+            <MenuItem value={"cuenca"}>Cuenca, Ecuador</MenuItem>
         </Select>
         <p>
             Información del clima en <span style={{textTransform: 'capitalize', fontWeight: 'bold'}}>{selectedCity}</span>
