@@ -7,7 +7,7 @@ export default function HeaderUI() {
       component="h1"
       sx={{ fontWeight: "bold" }}
     >
-      Dashboard
+      Dashboard Climático
     </Typography>
   );
 }

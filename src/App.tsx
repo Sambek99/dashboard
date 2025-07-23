@@ -77,9 +77,7 @@ function App() {
           {/* Gráfico */}
           <Grid size={{ xs: 12 }}>
             <Card sx={{ p: 2, borderRadius: 3, boxShadow: 3, mt: 2 }}>
-              <Typography variant="h6" gutterBottom>
-                Temperatura y viento por hora
-              </Typography>
+              
               <ChartUI
                 data={dataFetcherOutput.data}
                 loading={dataFetcherOutput.loading}
